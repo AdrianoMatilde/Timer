@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Timer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      #timer {
+        font-size: 80px;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      #copy {
+        position: absolute;
+        bottom: 0;
+        color: #181717;
+        width: 100%;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+
+      .scroll-container {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+      }
+
+      .scroll-container::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      .scroll-container::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+      }
+
+      .scroll-container::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 6px;
+      }
+
+      input[type="number"] {
+        font-size: 20px;
+        width: 80px;
+        padding: 10px;
+        margin: 0 10px;
+        border-radius: 5px;
+        border: none;
+        text-align: center;
+      }
+
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 20px;
+        background-color: #008cba;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #005b81;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Timer</h1>
+    <p id="timer"></p>
+    <div class="input-container">
+      <label for="hours">Horas:</label>
+      <div class="scroll-container">
+        <button onclick="increase('hours')">+</button>
+        <input type="number" id="hours" min="0" max="23" value="0">
+        <button onclick="decrease('hours')">-</button>
+      </div>
+      <label for="minutes">Minutos:</label>
+      <div class="scroll-container">
+        <button onclick="increase('minutes')">+</button>
+        <input type="number" id="minutes" min="0" max="59" value="0">
+        <button onclick="decrease('minutes')">-</button>
+      </div>
+    </div>
+    <button onclick="startTimer()">Iniciar</button>
+    <button onclick="stopTimer()">Parar</button>
+    <button onclick="resetTimer()">Reiniciar</button>
+    <p id="copy">By Adriano Silva</p>
+    <script>
+      var hours = 0;
+      var minutes = 0;
+      var seconds = 0;
+      var timer;
+      var blinking = false;
+
+      function startTimer() {
+        hours = document.getElementById("hours").value;
+        minutes = document.getElementById("minutes").value;
+        timer = setInterval(countDown, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timer);
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+        blinking = false;
+        updateTimer();
+      }
+
+      function countDown() {
+        if (seconds == 0) {
+          if (minutes == 0) {
+            if (hours == 0) {
+              clearInterval(timer);
+              blinkScreen();
+              return;
+            }
+            hours--;
+            minutes = 59;
+          } else {
+            minutes--;
+          }
+          seconds = 59;
+        } else {
+          seconds--;
+        }
+        updateTimer();
+      }
+
+      function updateTimer() {
+         var timerElement = document.getElementById("timer");
+         var hoursString = hours.toString().padStart(2, "0");
+         var minutesString = minutes.toString().padStart(2, "0");
+         var secondsString = seconds.toString().padStart(2, "0");
+         timerElement.innerHTML = hoursString + ":" + minutesString + ":" + secondsString;
+      }
+
+      function increase(unit) {
+        var input = document.getElementById(unit);
+        if (input.value < input.max) {
+          input.value++;
+        }
+      }
+
+      function decrease(unit) {
+        var input = document.getElementById(unit);
+        if (input.value > input.min) {
+          input.value--;
+        }
+      }
+
+      function blinkScreen() {
+        if (blinking) {
+          document.body.style.backgroundColor = "#f0f0f0";
+          blinking = false;
+        } else {
+          document.body.style.backgroundColor = "#ff0000";
+          blinking = true;
+        }
+        setTimeout(blinkScreen, 500);
+      }
+    </script>
+  </body>
+</html>
