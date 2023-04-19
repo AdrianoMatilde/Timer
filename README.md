@@ -3,7 +3,7 @@
  
 ---
 
-Este é um código HTML e JavaScript simples que apresenta um temporizador que pode ser personalizado pelo usuário.
+Este é um código HTML, JavaScript e CSS embutido na pagina para estilizar, esse código simples apresenta um temporizador que pode ser personalizado pelo usuário.
 É um exemplo básico de como criar uma página da web interativa usando HTML e JavaScript.
 
 O código HTML que define uma página web que apresenta um temporizador que pode ser configurado pelo usuário para contar o tempo especificado. A página tem uma interface simples, com botões para aumentar ou diminuir as horas e os minutos do temporizador, um botão para iniciar, parar e reiniciar o temporizador e um texto que exibe o tempo restante.
