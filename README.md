@@ -1,5 +1,5 @@
 # Timer (Temporizador)
- Timer utilizando HTML e JavaScript
+ Timer utilizando HTML, JavaScript e CSS embutido na pagina.
  
 ---
 
