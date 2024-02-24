@@ -15,6 +15,7 @@ Dentro do <head> há uma tag <style> que define o estilo dos elementos da págin
 A tag script contém o código JavaScript que implementa a funcionalidade do temporizador.
 O JavaScript é responsável por capturar os valores dos inputs de horas e minutos, atualizar a exibição do temporizador a cada segundo e implementar os botões de início, parada e reinício do temporizador.
 
+
 ---
 
 Espero que tenha gostado!
